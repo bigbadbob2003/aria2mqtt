@@ -8,17 +8,17 @@ USER app
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG configuration=Release
 WORKDIR /src
-COPY ["aria.csproj", "./"]
-RUN dotnet restore "aria.csproj"
+COPY ["aria2mqtt.csproj", "./"]
+RUN dotnet restore "aria2mqtt.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "aria.csproj" -c $configuration -o /app/build
+RUN dotnet build "aria2mqtt.csproj" -c $configuration -o /app/build
 
 FROM build AS publish
 ARG configuration=Release
-RUN dotnet publish "aria.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "aria2mqtt.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "aria.dll"]
+ENTRYPOINT ["dotnet", "aria2mqtt.dll"]
