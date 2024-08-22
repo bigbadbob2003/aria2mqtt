@@ -16,7 +16,7 @@ A Dockerfile and Docker Compose file are provided. Ensure that you have configur
 
 To run this project, you need to add the following environment variables to your `.env` file:
 
-- `FITBIT_URL`
+- `FITBIT_URL` this will need to be an ip address, you can get this from pinging `www.fitbit.com` before setting up your DNS rules, at time of writing this is `http://35.244.211.136`
 - `MQTT_SERVER`
 - `MQTT_USER`
 - `MQTT_PASSWORD`
